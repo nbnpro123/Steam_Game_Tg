@@ -129,20 +129,43 @@ def get_top_sellers_api(region='us', language='english'):
     return top_games
 
 
-
-
-# Тестируем оба метода
 if __name__ == "__main__":
     print("=== Метод 1: API featured categories ===")
     top_games1 = get_top_sellers_api(region='us')
 
     print(f"\nНайдено {len(top_games1)} игр через API")
+    game_top1 = []
     for i, game in enumerate(top_games1[:20], 1):
-        print(f"{i}. {game['title']}")
-        print(f"   Цена: {game['price']}")
-        print(f"   Жанры: {game.get('genres', 'N/A')}")
-        print(f"   Metacritic: {game.get('metacritic_score', 'N/A')}")
-        print()
+        # Формируем отформатированную строку для каждой игры
+        game_info = (
+            f"{i}. {game['title']}\n"
+            f"   Цена: {game['price']}\n"
+            f"   Жанры: {game.get('genres', 'N/A')}\n"
+            f"   Metacritic: {game.get('metacritic_score', 'N/A')}\n"
+            f"   Ссылка: {game['url']}\n"
+        )
+        game_top1.append(game_info)
+
+    # Сохраняем результат в переменную, доступную для импорта
+    TOP_GAMES_RESULT = "\n".join(game_top1)
+
+
+# Создаем функцию для получения данных извне
+def get_top_games():
+    """Функция для получения топ-игр из другого файла"""
+    top_games = get_top_sellers_api(region='us')
+    game_top1 = []
+    for i, game in enumerate(top_games[:20], 1):
+        game_info = (
+            f"{i}. {game['title']}\n"
+            f"   Цена: {game['price']}\n"
+            f"   Жанры: {game.get('genres', 'N/A')}\n"
+            f"   Metacritic: {game.get('metacritic_score', 'N/A')}\n"
+            f"   Ссылка: {game['url']}\n"
+        )
+        game_top1.append(game_info)
+    return "\n".join(game_top1)
+
 
 
 
