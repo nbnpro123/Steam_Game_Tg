@@ -3,7 +3,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import telebot
 from steam_parser import get_top_games  # Импортируем функцию вместо переменной
 
-bot = telebot.TeleBot(token='8304089254:AAFU7vaP8KxgXiCc5VL591P6JNaOR-gIbXc')
+bot = telebot.TeleBot(token='8304089254:AP6JNaOR-gIbXc')
 
 
 @bot.message_handler(commands=['start'])
