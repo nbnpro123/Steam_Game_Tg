@@ -202,10 +202,6 @@ def format_games_list(games, title):
         if game.get('metacritic_score', 'N/A') != 'N/A':
             game_info += f"   ⭐ Рейтинг: {game['metacritic_score']}/100\n"
 
-        # Добавляем краткое описание, если есть
-        if game.get('short_description'):
-            game_info += f"   📝 {game['short_description']}\n"
-
         game_info += f"   🔗 [Ссылка на Steam]({game['url']})\n"
 
         game_top.append(game_info)
