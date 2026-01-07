@@ -265,7 +265,7 @@ def get_top_sellers_api(region='us', language='english'):
 def get_top_games():
     """Функция для получения топ-игр"""
     games = get_steam_games_api(region='us', category='specials')
-    return format_games_list(games, "🎮 ТОП-20 ИГР ПО ПРОДАЖАМ")
+    return format_games_list(games, "🎮 ТОП ИГР ПО ПРОДАЖАМ")
 
 
 def get_discount_games():
@@ -278,30 +278,7 @@ def get_discount_games():
     # Сортируем по размеру скидки (по убыванию)
     discount_games.sort(key=lambda x: x.get('discount_percent', 0), reverse=True)
 
-    return format_games_list(discount_games[:10], "🔥 ТОП-10 ИГР СО СКИДКАМИ")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return format_games_list(discount_games[:10], "🔥 ТОП ИГР СО СКИДКАМИ")
 
 
 def get_free_games():
@@ -309,7 +286,7 @@ def get_free_games():
     all_games = get_steam_games_api(region='us', category='specials')
 
     # Фильтруем бесплатные игры
-    free_games = [game for game in all_games if game.get("count">0)]
+    free_games = [game for game in all_games if game.get('is_free', False)]
 
     # Если в топе мало бесплатных игр, попробуем получить больше из разных категорий
     if len(free_games) < 10:
@@ -325,23 +302,6 @@ def get_free_games():
             unique_free_games.append(game)
 
     return format_games_list(unique_free_games[:20], "🆓 ТОП БЕСПЛАТНЫХ ИГР")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def format_games_list(games, title):
