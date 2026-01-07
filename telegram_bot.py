@@ -125,6 +125,7 @@ def send_free_games(message):
 def callback_message(callback):
     if callback.data == "top_game":
         bot.answer_callback_query(callback.id, "Загружаю топ игр...")
+        bot.send_message(callback.message.chat.id, "Минуточку...")
         try:
             game_top1 = get_top_games()
 
@@ -142,6 +143,7 @@ def callback_message(callback):
 
     elif callback.data == "top_discount":
         bot.answer_callback_query(callback.id, "Ищу игры со скидками...")
+        bot.send_message(callback.message.chat.id, "Минуточку...")
         try:
             discount_games = get_discount_games()
 
@@ -159,6 +161,7 @@ def callback_message(callback):
 
     elif callback.data == "top_free":
         bot.answer_callback_query(callback.id, "Ищу бесплатные игры...")
+        bot.send_message(callback.message.chat.id, "Минуточку...")
         try:
             free_games = get_free_games()
 
